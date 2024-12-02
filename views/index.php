@@ -23,22 +23,115 @@ if (file_exists('./components/header.php')) {
 ?>
 <head>
 <style>
-body {
+
+html, body {
   background-image: url('../assets/imgs/front-page/bg.png');
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+  min-height: 100%;
 }
 
+.snowflakes {
+  width: 100%; height: 1200px;
+  position: absolute; top: -90px; left: 0;
+}
 
-.review-box {
-  backdrop-filter: blur(10px);
+.snowflakes i, 
+.snowflakes i:after, 
+.snowflakes i:before  { background: white; }
+.snowflakes i {
+  display: inline-block;
+  -webkit-animation: snowflakes 3s linear 2s 20;
+  -moz-animation: snowflakes 3s linear 2s 20;
   position: relative;
+}
+.snowflakes i:after, 
+.snowflakes i:before {
+  height: 100%;
+  width: 100%;
+  content: ".";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  -webkit-transform: rotate(120deg);
+}
+.snowflakes i:before { -webkit-transform: rotate(240deg); }
+
+@-webkit-keyframes snowflakes {
+  0% {
+    -webkit-transform: translate3d(0,0,0) rotate(0deg) scale(0.6);
+  }
+  100% {
+    -webkit-transform: translate3d(15px, 1200px, 0px) rotate(360deg) scale(0.6);
+  };
+}
+
+.snowflakes i:nth-child(3n) {
+  width: 16px; height: 4px;
+  -webkit-animation-duration: 4s;
+  -webkit-animation-iteration-count: 30;
+  -webkit-transform-origin: right -45px;
+}
+
+.snowflakes i:nth-child(3n+1) {
+  width: 24px; height: 6px;
+  -webkit-animation-duration: 6s;
+  -webkit-animation-iteration-count: 45;
+  -webkit-transform-origin: right -30px;
+}
+
+.snowflakes i:nth-child(3n+2) {
+  width: 32px; height: 8px;
+  -webkit-animation-duration: 8s;
+  -webkit-animation-iteration-count: 60;
+  -webkit-transform-origin: right -15px;
+}
+  
+/* different delays so they don't all start at the same time */
+.snowflakes i:nth-child(7n) {
+  opacity:.3;
+  -webkit-animation-delay: 0s;
+  -webkit-animation-timing-function:ease-in;
+}
+.snowflakes i:nth-child(7n+1) {
+  opacity:.4;
+  -webkit-animation-delay: 1s;
+  -webkit-animation-timing-function:ease-out;
+}
+.snowflakes i:nth-child(7n+2) {
+  opacity:.5;
+  -webkit-animation-delay: 1.5s;
+  -webkit-animation-timing-function:linear;
+}
+.snowflakes i:nth-child(7n+3) {
+  opacity:.6;
+  -webkit-animation-delay: 2s;
+  -webkit-animation-timing-function:ease-in;
+}
+.snowflakes i:nth-child(7n+4) {
+  opacity:.7;
+  -webkit-animation-delay: 2.5s;
+  -webkit-animation-timing-function:linear;
+}
+.snowflakes i:nth-child(7n+5) {
+  opacity:.8;
+  -webkit-animation-delay: 3s;
+  -webkit-animation-timing-function:ease-out;
+}
+.snowflakes i:nth-child(7n+6) {
+  opacity:.9;
+  -webkit-animation-delay: 3.5s;
+  -webkit-animation-timing-function:ease-in;
+}
+.zandex{
   z-index: 1;
 }
+
 </style>
 </head>
-
+<div class="snowflakes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
  <!-- ========== END HEADER ========== -->
     <!-- Hero -->
-    <div class="transition-all max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 mt-[2.5rem]">
+    <div class="transition-all max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 mt-[2.5rem] ">
       <!-- Grid -->
       <div class="transition-all grid lg:grid-cols-7 lg:gap-x-8 xl:gap-x-12 lg:items-center backgro">
         <div class="transition-all lg:col-span-3">
@@ -55,10 +148,9 @@ body {
               
             </span>
           </h1>
-
           <div class="transition-all mt-5 lg:mt-8 flex flex-col items-center gap-2 sm:flex-row sm:gap-3">
             <div class="transition-all w-full sm:w-auto flex items-center">
-              <a class="transition-all inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-violet-600 hover:to-blue-600 border border-transparent text-white text-sm font-medium rounded-md focus:from-violet-600 focus:to-blue-600 py-3 px-4"
+              <a class="transition-all inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-violet-600 hover:to-blue-600 border border-transparent text-white text-sm font-medium rounded-md focus:from-violet-600 focus:to-blue-600 py-3 px-4 zandex"
                 href="https://dash.navocloud.com">
                 Get started
                 <svg class="transition-all shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -67,7 +159,7 @@ body {
                   <path d="m9 18 6-6-6-6" />
                 </svg>
               </a>
-              <a class="transition-all inline-flex justify-center items-center ml-2 gap-x-3 text-center text-white text-sm font-medium rounded-md bg-neutral-800 hover:bg-neutral-800/25 border-neutral-800/45 py-3 px-4"
+              <a class="transition-all inline-flex justify-center items-center ml-2 gap-x-3 text-center text-white text-sm font-medium rounded-md bg-neutral-800 hover:bg-neutral-800/25 border-neutral-800/45 py-3 px-4 zandex"
                 href="https://www.paypal.com/paypalme/godly109?country.x=GB&locale.x=en_GB">
                 Donate To Us
                 <svg class="transition-all shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -134,7 +226,7 @@ body {
             <p><span class="transition-all bg-green-300">[20:25:10][tx]</span></p>
             <p class="transition-all text-cyan-400">
               <span class="transition-all bg-green-300">[20:25:10][tx]</span>
-              ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+              ┏━━━━━━━━━━━━━━━━━━━��━━━━━━━━━━━━━━━━┓
             </p>
             <p class="transition-all text-cyan-400">
               <span class="transition-all bg-green-300">[20:25:10][tx]</span> ┃ ┃
@@ -172,7 +264,7 @@ body {
 
     <div class="transition-all flex flex-col space-y-6">
   <div class="transition-all flex justify-center flex-wrap gap-6">
-    <div class="transition-all flex items-center space-x-4 bg-neutral-800/35 border border-neutral-700 hover:border-[#2563EB] p-4 rounded-lg">
+    <div class="transition-all flex items-center space-x-4 bg-neutral-800/35 border border-neutral-700 hover:border-[#2563EB] p-4 rounded-lg zandex">
       <img src="./assets/imgs/front-page/flex_development.png" width="48" height="48"
         alt="Flex Development" loading="lazy" class="transition-all rounded-full" />
       <div>
@@ -180,7 +272,7 @@ body {
         <p class="transition-all text-gray-400">1,465 members</p>
       </div>
     </div>
-    <div class="transition-all flex items-center space-x-4 bg-neutral-800/35 border border-neutral-700 hover:border-[#2563EB] p-4 rounded-lg">
+    <div class="transition-all flex items-center space-x-4 bg-neutral-800/35 border border-neutral-700 hover:border-[#2563EB] p-4 rounded-lg zandex">
       <img src="./assets/imgs/front-page/mystic_shores_rp.png" width="48" height="48" loading="lazy"
         alt="Mystic Shores RP" class="transition-all rounded-full" />
       <div>
@@ -188,7 +280,7 @@ body {
         <p class="transition-all text-gray-400">32 Members</p>
       </div>
     </div>
-    <div class="transition-all flex items-center space-x-4 bg-neutral-800/35 border border-neutral-700 hover:border-[#2563EB] p-4 rounded-lg">
+    <div class="transition-all flex items-center space-x-4 bg-neutral-800/35 border border-neutral-700 hover:border-[#2563EB] p-4 rounded-lg zandex">
       <img src="./assets/imgs/front-page/peanut_network.gif" width="48" height="48"
         alt="Peanut Network" class="transition-all rounded-full" loading="lazy" />
       <div>
@@ -196,7 +288,7 @@ body {
         <p class="transition-all text-gray-400">50 Members</p>
       </div>
     </div>
-    <div class="transition-all flex items-center space-x-4 bg-neutral-800/35 border border-neutral-700 hover:border-[#2563EB] p-4 rounded-lg">
+    <div class="transition-all flex items-center space-x-4 bg-neutral-800/35 border border-neutral-700 hover:border-[#2563EB] p-4 rounded-lg zandex">
       <img src="./assets/imgs/front-page/galactic_mc.png" width="48" height="48"
         alt="Galactic MC™ Official" class="transition-all rounded-full" />
       <div>
@@ -207,7 +299,7 @@ body {
   </div>
 
   <div class="transition-all flex justify-center flex-wrap gap-6">
-    <div class="transition-all flex items-center space-x-4 bg-neutral-800/35 border border-neutral-700 hover:border-[#2563EB] p-4 rounded-lg">
+    <div class="transition-all flex items-center space-x-4 bg-neutral-800/35 border border-neutral-700 hover:border-[#2563EB] p-4 rounded-lg zandex">
       <img src="./assets/imgs/front-page/buddies_empire.png" width="48" height="48"
         alt="BUDDIES EMPIRE SMP" loading="lazy" class="transition-all rounded-full" />
       <div>
@@ -215,7 +307,7 @@ body {
         <p class="transition-all text-gray-400">144 Members</p>
       </div>
     </div>
-    <div class="transition-all flex items-center space-x-4 bg-neutral-800/35 border border-neutral-700 hover:border-[#2563EB] p-4 rounded-lg">
+    <div class="transition-all flex items-center space-x-4 bg-neutral-800/35 border border-neutral-700 hover:border-[#2563EB] p-4 rounded-lg zandex">
       <img src="./assets/imgs/front-page/the_atlas_project.png" width="48" height="48"
         alt="Atlas Project" class="transition-all rounded-full" />
       <div>
@@ -223,7 +315,7 @@ body {
         <p class="transition-all text-gray-400">67 Members</p>
       </div>
     </div>
-    <div class="transition-all flex items-center space-x-4 bg-neutral-800/35 border border-neutral-700 hover:border-[#2563EB] p-4 rounded-lg">
+    <div class="transition-all flex items-center space-x-4 bg-neutral-800/35 border border-neutral-700 hover:border-[#2563EB] p-4 rounded-lg zandex">
       <img src="./assets/imgs/front-page/the-dm-place.png" width="48" height="48"
         alt="The DM Place" class="transition-all rounded-full" />
       <div>
@@ -836,11 +928,11 @@ body {
         <p class="text-sm text-gray-500">PH | Rated 4 out of 5 stars</p>
         <p class="text-sm text-gray-400 mt-4">Good Staffs are good. Hosting are a little bit laggy but hey for a free hosting this is so worth it (I'm in Asia).</p>
         <div class="text-yellow-500 mt-4">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
         </div>
       </div>
 
@@ -850,11 +942,11 @@ body {
         <p class="text-sm text-gray-500">GB | Rated 5 out of 5 stars</p>
         <p class="text-sm text-gray-400 mt-4">Amazing staff team, fun environment. Would 10000/10 recommend people to join this community.</p>
         <div class="text-yellow-500 mt-4">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
         </div>
       </div>
 
@@ -864,11 +956,10 @@ body {
         <p class="text-sm text-gray-500">GB | Rated 4 out of 5 stars</p>
         <p class="text-sm text-gray-400 mt-4">It's a great hosting site for your servers. The owner and admins are great and always try to help you.</p>
         <div class="text-yellow-500 mt-4">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
         </div>
       </div>
 
@@ -878,11 +969,10 @@ body {
         <p class="text-sm text-gray-500">JP | Rated 4 out of 5 stars</p>
         <p class="text-sm text-gray-400 mt-4">I just started using this web for hosting my project. 9/10 so far, thanks for the guide and help!</p>
         <div class="text-yellow-500 mt-4">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
         </div>
       </div>
 
@@ -892,11 +982,11 @@ body {
         <p class="text-sm text-gray-500">EG | Rated 4 out of 5 stars</p>
         <p class="text-sm text-gray-400 mt-4">The service is amazing, but the downtimes should be less frequent.</p>
         <div class="text-yellow-500 mt-4">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
         </div>
       </div>
 
@@ -906,11 +996,11 @@ body {
         <p class="text-sm text-gray-500">US | Rated 5 out of 5 stars</p>
         <p class="text-sm text-gray-400 mt-4">The support team helped me set up a Java/Bedrock crossplay server. Great service and free hosting for Minecraft.</p>
         <div class="text-yellow-500 mt-4">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
         </div>
       </div>
 
@@ -920,11 +1010,11 @@ body {
         <p class="text-sm text-gray-500">AM | Rated 5 out of 5 stars</p>
         <p class="text-sm text-gray-400 mt-4">Hello, this website is literally perfect, they give out free 24/7 hosting, their Discord server has the nicest staff team.</p>
         <div class="text-yellow-500 mt-4">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
         </div>
       </div>
 
@@ -934,11 +1024,11 @@ body {
         <p class="text-sm text-gray-500">PH | Rated 5 out of 5 stars</p>
         <p class="text-sm text-gray-400 mt-4">The affordable and simple server hosting offers are enough alone. Interactive and very helpful staff. 5/5 would recommend.</p>
         <div class="text-yellow-500 mt-4">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
         </div>
       </div>
 
@@ -948,11 +1038,11 @@ body {
         <p class="text-sm text-gray-500">IN | Rated 5 out of 5 stars</p>
         <p class="text-sm text-gray-400 mt-4">This best hosting I have ever seen in my life, one of my friends suggested me this hosting, and it gives insane ping.</p>
         <div class="text-yellow-500 mt-4">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
+          <i class="fas fa-star reset"></i>
         </div>
       </div>
     </div>

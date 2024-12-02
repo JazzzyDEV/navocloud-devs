@@ -1,0 +1,65 @@
+name: Deploy Nginx with NVCloud
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy-nginx:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Required Packages
+        run: |
+          sudo apt update
+          sudo apt install -y nginx git openssh-server ufw php php-fpm tar unzip curl
+
+      - name: Install Ngrok
+        run: |
+          curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
+          | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null \
+          && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
+          | sudo tee /etc/apt/sources.list.d/ngrok.list \
+          && sudo apt update -y \
+          && sudo apt install ngrok -y
+
+      - name: Configure Ngrok
+        run: ngrok config add-authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
+
+      - name: Configure UFW for Nginx
+        run: |
+          sudo ufw allow 80
+          sudo ufw allow 443
+
+      - name: Configure Nginx Default Site
+        run: |
+          sudo rm -rf /etc/nginx/sites-enabled/default
+          curl https://gist.githubusercontent.com/LakshmiBhaskarPVL/9dfff96c7580079fffa641184063f1f9/raw/ab67485fe271ebc8d841d96f811f7a406bd5b2c8/default | sudo tee /etc/nginx/sites-enabled/default >/dev/null
+          sudo systemctl restart nginx
+
+      - name: Clone NVCloud Repo
+        uses: GuillaumeFalourd/clone-github-repo-action@v2.3
+        with:
+          owner: 'LakshmiBhaskarPVL'
+          repository: 'nvcloud'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Deploy NVCloud to Nginx
+        run: |
+          cd nvcloud
+          ls -ltr
+          sudo systemctl status nginx
+          ls /run/php
+          sudo systemctl status php8.1-fpm
+          sudo systemctl start php8.1-fpm
+          sudo mv * /var/www/html/
+          sudo systemctl start nginx
+
+
+      - name: Start Ngrok HTTP Tunnel
+        run: ngrok http --url=impala-credible-ape.ngrok-free.app 80
